@@ -16,8 +16,14 @@ Strategy in a nutshell:
     reserve so we can always afford the next sales trip.
 """
 
+import os
+import sys
 import random
 from collections import Counter, defaultdict
+
+# pm_wars.py lives in the repo root, one level up from this folder.
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _ROOT)
 import pm_wars as g
 
 SEED          = 7
@@ -247,7 +253,8 @@ def write_markdown(rows, s, nw, grade):
     lines.append(f"- **Net worth:** ${nw:,}")
     lines.append(f"- **Grade:** {grade}")
     lines.append("")
-    with open("PLAYTHROUGH.md", "w") as f:
+    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "PLAYTHROUGH.md")
+    with open(out_path, "w") as f:
         f.write("\n".join(lines))
 
 
